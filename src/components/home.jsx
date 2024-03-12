@@ -5,10 +5,7 @@ import { Navigate } from 'react-router-dom'
 import TaskContext from './taskContext'
 
 function Home(props) {
-    const islogged = useContext(TaskContext).isloggin
-    if (!islogged){
-        return <Navigate to="/login" replace />
-    }
+    const isLogged = useContext(TaskContext).isLogged;
     return (
         <div>
             <h1>Home</h1>

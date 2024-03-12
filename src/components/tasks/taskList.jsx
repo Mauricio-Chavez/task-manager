@@ -4,10 +4,11 @@ import Task from './task'
 import TaskContext from '../taskContext'
 
 function TaskList() {
-    const [tasks,setTasks] = useState([])
+    const tasks = useContext(TaskContext).tasks;
+    const setTasks = useContext(TaskContext).setTasks;
     const user = useContext(TaskContext).user
     async function loadTask(){
-        let res = await TaskService.getTasks()
+        let res = await TaskService.getTasks(user)
         setTasks(res)
     }
 

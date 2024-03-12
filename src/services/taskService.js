@@ -3,21 +3,20 @@ const API_URL = 'http://127.0.0.1:5000/api';
 
 class TaskService {
     
-    Save(task) { 
-        const res = axios.post(`${API_URL}/task`,task)
+    async Save(task) { 
+        const res = await axios.post(`${API_URL}/task`,task)
         return res.data;
     }
-    getTasks(){
-        const res = axios.get(`${API_URL}/tasks`)
-        console.log(res)
+    async getTasks(user){
+        const res = await axios.get(`${API_URL}/tasks/${user.email}`)
         return res.data;
     }
     removeTask(id){
         const res = axios.delete(`${API_URL}/task/${id}`)
         return res.data;
     }
-    editTask(id,task){
-        const res = axios.put(`${API_URL}/task/${id}`,task)
+    async editTask(task){
+        const res = await axios.post(`${API_URL}/task/${task._id}`,task)
         return res.data;
     }
 }

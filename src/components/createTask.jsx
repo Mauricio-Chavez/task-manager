@@ -4,15 +4,20 @@ import TaskContext from './taskContext'
 
 function CreateTask() {
     let user = useContext(TaskContext).user
-    function handleSubmit(e){
+    const tasks = useContext(TaskContext).tasks;
+    const setTasks = useContext(TaskContext).setTasks;
+
+    async function handleSubmit(e){
         e.preventDefault()
         let task = {
             title: e.target.title.value,
             description: e.target.description.value,
             dueDate: e.target.date.value,
-            user_email: user.email
+            user_email: user.email,
+            status: 'Pendiente',
         }
-        TaskService.Save(task)
+        let taskresp = await TaskService.Save(task)
+        setTasks([...tasks, taskresp])
         e.target.reset()
     }
     return (
@@ -22,7 +27,6 @@ function CreateTask() {
                 <input type="text" placeholder='Title' name='title'/>
                 <input type="text" placeholder='Description' name='description'/>
                 <input type="datetime-local" placeholder='Due Date' name='date'/>
-
                 <button type='submit'>Create Task</button>
             </form>
         </div>

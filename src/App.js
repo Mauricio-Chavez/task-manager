@@ -5,8 +5,11 @@ import Login from "./components/login";
 import Home from "./components/home";
 import { Navigate } from "react-router-dom";
 import GlobalState from "./components/globalState";
+import { useContext } from "react";
+import TaskContext from "./components/taskContext";
 
 function App() {
+  const isLogged = useContext(TaskContext).isLogged;
   
   return (
     <div>
@@ -16,7 +19,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/home" element={<Home/>} />
-            <Route path="*" element={<Navigate to="/home" replace />} />
+            {isLogged ? <Route path="*" element={<Navigate to="/home" replace />} /> : <Route path="*" element={<Navigate to="/login" replace />} />}
           </Routes>
         </BrowserRouter>
       </GlobalState>

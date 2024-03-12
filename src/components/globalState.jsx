@@ -12,7 +12,16 @@ function GlobalState(props) {
     const [user, setUser] = useState({})
     const [isloggin, setIsloggin] = useState(false)
     return (
-        <TaskContext.Provider value={{tasks: tasks, addTask: addTask, deleteTask: deleteTask, user: user, setUser:setUser, isloggin:isloggin, setIsloggin:setIsloggin}}>
+        <TaskContext.Provider value={{
+            tasks: tasks,
+            setTasks: setTasks,
+            addTask: addTask, 
+            deleteTask: deleteTask, 
+            user: user, 
+            setUser:setUser, 
+            isloggin:isloggin, 
+            setIsloggin:setIsloggin
+            }}>
             {props.children}
         </TaskContext.Provider>
     )

@@ -15,9 +15,9 @@ function Login(props) {
             email: e.target.email.value,
             password: e.target.password.value
         }
-        const userFound = await userService.Login(user);
-        console.log(userFound)  
+        const userFound = await userService.Login(user); 
         if(userFound){
+            console.log('entro')
             setUser(user)
             isLogged(true)
             navigate('/home')
